@@ -1,6 +1,11 @@
 {
   "name": "marvel-ql",
+  "description": "App criado para o desafio técnico Softplan",
   "version": "0.1.0",
+  "author": {
+    "name": "Felipe Bueno de Paula",
+    "email": "gvv.fel@gmail.com"
+  },
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.5.1",
@@ -12,6 +17,8 @@
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
     "@types/react-redux": "^7.1.7",
+    "antd": "^4.16.11",
+    "axios": "^0.21.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.0",
@@ -44,6 +51,7 @@
     ]
   },
   "devDependencies": {
+    "@types/webpack-env": "^1.16.2",
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
     "husky": "^7.0.1",
