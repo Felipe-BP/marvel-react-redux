@@ -3,7 +3,7 @@ import { configureStore, ThunkAction, Action, combineReducers } from '@reduxjs/t
 import charactersReducer from '../features/characters/characterSlice';
 import loggerMiddleware from '../middlewares/logger';
 
-export default function configureCharactersStore() {
+export default function configureAppStore() {
     const store = configureStore({
       reducer: {
         characters: charactersReducer,
@@ -22,12 +22,12 @@ export default function configureCharactersStore() {
     return store;
 }
 
-type Store = ReturnType<typeof configureCharactersStore>;
-export type CharactersDispatch = Pick<Store, 'dispatch'>;
-export type CharactersState = ReturnType<Store['getState']>; // infer state type
+type Store = ReturnType<typeof configureAppStore>;
+export type AppDispatch = Pick<Store, 'dispatch'>;
+export type AppState = ReturnType<Store['getState']>; // infer state type
 export type AppThunk<ReturnType = void> = ThunkAction<
   ReturnType,
-  CharactersState,
+  AppState,
   unknown,
   Action<string>
 >;

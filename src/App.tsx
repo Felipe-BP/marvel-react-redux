@@ -1,8 +1,7 @@
 import { useEffect } from 'react';
 
 import { fetchCharacterAsync } from './features/characters/characterSlice';
-import { useCharactersSelector } from './hooks/useCharactersSelector';
-// import { useCharactersDispatch } from './hooks/useCharactersDispatch';
+import { useAppSelector } from './hooks/useAppSelector';
 
 import './App.css';
 
@@ -12,8 +11,8 @@ import Meta from 'antd/lib/card/Meta';
 const { Header, Footer, Content } = Layout;
 
 function App() {
-  const status = useCharactersSelector(state => state.characters.status);
-  const characters = useCharactersSelector(state => state.characters.value?.results);
+  const status = useAppSelector(state => state.characters.status);
+  const characters = useAppSelector(state => state.characters.value?.results);
   const dispatch = useDispatch();
 
   useEffect(() => {
