@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Row, Col, Card, Layout, Image } from 'antd';
 
+import '../styles/home.css';
+
 import { useAppSelector } from '../hooks/useAppSelector';
 import { Character, fetchCharacterAsync } from '../features/characters/characterSlice';
 
@@ -26,11 +28,8 @@ export function Home() {
   );
 
   return (
-    <Content style={{ padding: "0 50px" }}>
-      <div
-        className="layout-content"
-        style={{ minHeight: 280, padding: 24, backgroundColor: "#fff" }}
-      >
+    <Content className="content-container">
+      <div className="layout-content">
         {status !== "idle" ? (
           <div>Loading...</div>
         ) : (
