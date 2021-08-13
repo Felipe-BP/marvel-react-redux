@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { api } from '../../services/api';
 
-interface Character {
+export interface Character {
     id: number;
     name: string
     description: string;
