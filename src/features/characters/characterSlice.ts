@@ -1,6 +1,10 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { api } from '../../services/api';
 
+interface SerieSummary {
+  name: string;
+  resourceURI: string;
+}
 export interface Character {
     id: number;
     name: string
@@ -9,13 +13,11 @@ export interface Character {
       path: string;
       extension: string;
     };
-    // modified (Date, optional): The date the resource was most recently modified.,
-    // resourceURI (string, optional): The canonical URL identifier for this resource.,
-    // urls (Array[Url], optional): A set of public web site URLs for the resource.,
-    // comics (ComicList, optional): A resource list containing comics which feature this character.,
-    // stories (StoryList, optional): A resource list of stories in which this character appears.,
-    // events (EventList, optional): A resource list of events in which this character appears.,
-    // series (SeriesList, optional): A resource list of series in which this character appears.
+    series: {
+      available: number;
+      collectionURI: string;
+      items: Array<SerieSummary>;
+    }
 }
 
 interface DataResponse {
