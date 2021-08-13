@@ -5,7 +5,7 @@ import { Row, Col, Layout } from 'antd';
 import '../styles/home.css';
 
 import { useAppSelector } from '../hooks/useAppSelector';
-import { fetchCharacterAsync } from '../features/characters/characterSlice';
+import { fetchCharacterAsync, Status } from '../features/characters/characterSlice';
 import { CharacterCard } from '../components/CharacterCard';
 
 const { Content } = Layout;
@@ -22,7 +22,7 @@ export function Home() {
   return (
     <Content className="content-container">
       <div className="layout-content">
-        {status !== "idle" ? (
+        {status !== Status.IDLE ? (
           <div>Loading...</div>
         ) : (
           <Row gutter={[16, 16]}>

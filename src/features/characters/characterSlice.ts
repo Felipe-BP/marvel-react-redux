@@ -1,10 +1,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { api } from '../../services/api';
 
+export enum Status {
+  IDLE = 'IDLE',
+  LOADING = 'LOADING',
+  FAILED = 'FAILED'
+}
+
 interface SerieSummary {
   name: string;
   resourceURI: string;
 }
+
 export interface Character {
     id: number;
     name: string
@@ -30,12 +37,12 @@ interface DataResponse {
 
 export interface CharacterState {
   value: DataResponse | null;
-  status: 'idle' | 'loading' | 'failed';
+  status: Status;
 }
 
 const initialState: CharacterState = {
   value: null,
-  status: 'idle',
+  status: Status.IDLE,
 };
 
 export const fetchCharacterAsync = createAsyncThunk(
@@ -53,10 +60,10 @@ export const characterSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(fetchCharacterAsync.pending, (state) => {
-        state.status = 'loading';
+        state.status = Status.LOADING;
       })
       .addCase(fetchCharacterAsync.fulfilled, (state, action) => {
-        state.status = 'idle';
+        state.status = Status.IDLE;
         state.value = action.payload;
       });
   },
