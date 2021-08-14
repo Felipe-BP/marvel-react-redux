@@ -7,7 +7,7 @@ const { Header, Footer } = Layout;
 
 function App() {
   return (
-    <Layout>
+    <Layout style={{ minHeight: '100%' }}>
       <Header>Header</Header>
 
       <BrowserRouter>
