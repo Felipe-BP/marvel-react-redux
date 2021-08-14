@@ -3,11 +3,16 @@
 }
 
 .layout-content {
-    min-height: 280px;
+    min-height: 100%;
     padding: 24px;
+    margin: 24px;
     background-color: #fff;
 }
 
 .column {
     padding: 8px 0;
+}
+
+.layout-content .search {
+    margin-bottom: 2.5rem;
 }
