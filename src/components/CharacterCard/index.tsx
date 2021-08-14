@@ -33,11 +33,7 @@ export function CharacterCard({ character }: CharacterCardProps) {
           <Link
             to={{
               pathname: `/character/${character.id}/details`,
-              state: {
-                name: character.name,
-                description: character.description,
-                series: character.series,
-              },
+              state: { character }
             }}
           >
             Click here for details <ArrowRightOutlined />
