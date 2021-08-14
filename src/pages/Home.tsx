@@ -25,9 +25,9 @@ export function Home() {
         {status !== Status.IDLE ? (
           <div>Loading...</div>
         ) : (
-          <Row gutter={[16, 16]}>
+          <Row gutter={{ xs: 8, sm: 16, md: 24, lg: 32 }}>
             {characters?.map((character) => (
-              <Col span={6} key={character.id}>
+              <Col className="column" key={character.id}>
                 <CharacterCard character={character} />
               </Col>
             ))}
