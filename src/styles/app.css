@@ -1,0 +1,18 @@
+.app-container {
+    min-height: 100%;
+}
+
+.app-container .content-container {
+    padding: 0 50px;
+}
+
+.app-container .content-container .layout-content {
+    min-height: 100%;
+    padding: 24px;
+    margin: 24px;
+    background-color: #fff;
+}
+
+.app-container .footer {
+    text-align: center;
+}
