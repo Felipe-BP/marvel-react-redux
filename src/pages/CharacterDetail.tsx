@@ -1,16 +1,18 @@
 import { useEffect, useState } from 'react';
 
 import { useLocation, useParams } from 'react-router-dom';
-import { Descriptions, PageHeader, Tag } from 'antd';
-import Paragraph from 'antd/lib/typography/Paragraph';
+import { Descriptions, PageHeader, Tag, Typography } from 'antd';
 
 import { Character, DataResponse } from '../features/characters/characterSlice';
 import { api } from '../services/api';
+
+const { Text, Paragraph } = Typography;
 
 export function CharacterDetail() {
   const { state } = useLocation<{ character: Character }>();
   const { characterId } = useParams<{ characterId: string }>();
   const [character, setCharacter] = useState(state.character);
+  const characterHasSeries = character.series.available >= 1;
 
   useEffect(() => {
     async function fetchCharacter() {
@@ -41,16 +43,19 @@ export function CharacterDetail() {
         </Descriptions>
 
         <Descriptions title='Series' column={{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }}>
-            {character.series.available > 1 && character.series.items.map(serie => (
+            {characterHasSeries && character.series.items.map(serie => (
                 <Descriptions.Item key={serie.name}>
                     <Tag color="blue">
-                        <Paragraph ellipsis={{ tooltip: serie.name, rows: 1 }}>
+                        <Text
+                            style={{ width: 200 }}
+                            ellipsis={{ tooltip: serie.name }}
+                        >
                             {serie.name}
-                        </Paragraph>
+                        </Text>
                     </Tag>
                 </Descriptions.Item>
             ))}
-            {character.series.available <= 0 && (<Paragraph>There's no series.</Paragraph>)}
+            {!characterHasSeries && (<Paragraph>There's no series.</Paragraph>)}
         </Descriptions>
     </PageHeader>
   );
