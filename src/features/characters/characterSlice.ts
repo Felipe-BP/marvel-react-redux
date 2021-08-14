@@ -14,18 +14,18 @@ interface SerieSummary {
 }
 
 export interface Character {
-    id: number;
-    name: string
-    description: string;
-    thumbnail: {
-      path: string;
-      extension: string;
-    };
-    series: {
-      available: number;
-      collectionURI: string;
-      items: Array<SerieSummary>;
-    }
+  id: number;
+  name: string
+  description: string;
+  thumbnail: {
+    path: string;
+    extension: string;
+  };
+  series: {
+    available: number;
+    collectionURI: string;
+    items: Array<SerieSummary>;
+  }
 }
 
 interface DataResponse {
@@ -39,6 +39,7 @@ interface DataResponse {
 export interface CharacterState {
   value: DataResponse;
   status: Status;
+  searchValue: string | null;
 }
 
 const initialState: CharacterState = {
@@ -50,14 +51,23 @@ const initialState: CharacterState = {
     results: [],
   },
   status: Status.IDLE,
+  searchValue: null
 };
 
-export const fetchCharacterAsync = createAsyncThunk<DataResponse, void, { state: AppState }>(
+export const fetchCharactersAsync = createAsyncThunk<DataResponse, void, { state: AppState }>(
   'characters/fetchCharacters',
   async (_, { getState }) => {
-    const { offset, limit } = getState().characters.value;
+    const {
+      searchValue,
+      value: { offset, limit }
+    } = getState().characters;
+
     const { data: resData } = await api.get<{ data: DataResponse }>('/v1/public/characters', {
-      params: { offset, limit }
+      params: {
+        offset,
+        limit,
+        ...(searchValue ? { nameStartsWith: searchValue } : {})
+      }
     });
     return resData.data;
   }
@@ -70,18 +80,21 @@ export const characterSlice = createSlice({
     changeCurrentPage: (state, action: PayloadAction<number>) => {
       state.value.offset = action.payload;
     },
+    changeSearchValue: (state, action: PayloadAction<string>) => {
+      state.searchValue = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
-      .addCase(fetchCharacterAsync.pending, (state) => {
+      .addCase(fetchCharactersAsync.pending, (state) => {
         state.status = Status.LOADING;
       })
-      .addCase(fetchCharacterAsync.fulfilled, (state, action) => {
+      .addCase(fetchCharactersAsync.fulfilled, (state, action) => {
         state.status = Status.IDLE;
         state.value = action.payload;
       });
   },
 });
 
-export const { changeCurrentPage } = characterSlice.actions;
+export const { changeCurrentPage, changeSearchValue } = characterSlice.actions;
 export default characterSlice.reducer;
