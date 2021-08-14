@@ -1,5 +1,6 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { api } from '../../services/api';
+import { AppState } from '../../store/store';
 
 export enum Status {
   IDLE = 'IDLE',
@@ -36,19 +37,28 @@ interface DataResponse {
 }
 
 export interface CharacterState {
-  value: DataResponse | null;
+  value: DataResponse;
   status: Status;
 }
 
 const initialState: CharacterState = {
-  value: null,
+  value: {
+    offset: 0,
+    limit: 20,
+    total: 0,
+    count: 0,
+    results: [],
+  },
   status: Status.IDLE,
 };
 
-export const fetchCharacterAsync = createAsyncThunk(
+export const fetchCharacterAsync = createAsyncThunk<DataResponse, void, { state: AppState }>(
   'characters/fetchCharacters',
-  async () => {
-    const { data: resData } = await api.get<{ data: DataResponse }>('/v1/public/characters');
+  async (_, { getState }) => {
+    const { offset, limit } = getState().characters.value;
+    const { data: resData } = await api.get<{ data: DataResponse }>('/v1/public/characters', {
+      params: { offset, limit }
+    });
     return resData.data;
   }
 );
@@ -56,7 +66,11 @@ export const fetchCharacterAsync = createAsyncThunk(
 export const characterSlice = createSlice({
   name: 'characters',
   initialState,
-  reducers: {},
+  reducers: {
+    changeCurrentPage: (state, action: PayloadAction<number>) => {
+      state.value.offset = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchCharacterAsync.pending, (state) => {
@@ -69,4 +83,5 @@ export const characterSlice = createSlice({
   },
 });
 
+export const { changeCurrentPage } = characterSlice.actions;
 export default characterSlice.reducer;
