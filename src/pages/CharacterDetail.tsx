@@ -19,7 +19,6 @@ export function CharacterDetail() {
         setCharacter(retrievedCharacter);
     }
 
-    console.log(character);
     if (!character) {
         fetchCharacter();
     }
