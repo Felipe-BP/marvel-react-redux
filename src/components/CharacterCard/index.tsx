@@ -1,5 +1,7 @@
 import { Card, Image } from 'antd';
+import { ArrowRightOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+
 import { Character } from '../../features/characters/characterSlice';
 
 import './styles.css';
@@ -38,7 +40,7 @@ export function CharacterCard({ character }: CharacterCardProps) {
               },
             }}
           >
-            Click here for details
+            Click here for details <ArrowRightOutlined />
           </Link>
         }
       />
