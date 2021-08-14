@@ -33,7 +33,7 @@ export function CharacterDetail() {
         <Descriptions title='Description'>
             <Descriptions.Item>
                 <Paragraph>{
-                    character.description
+                    character.description.trim()
                         ? character.description
                         : 'There\'s no description.'
                 }</Paragraph>
