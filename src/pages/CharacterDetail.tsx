@@ -41,8 +41,8 @@ export function CharacterDetail() {
         </Descriptions>
 
         <Descriptions title='Series' column={{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }}>
-            {character.series.items.map(serie => (
-                <Descriptions.Item>
+            {character.series.available > 1 && character.series.items.map(serie => (
+                <Descriptions.Item key={serie.name}>
                     <Tag color="blue">
                         <Paragraph ellipsis={{ tooltip: serie.name, rows: 1 }}>
                             {serie.name}
@@ -50,6 +50,7 @@ export function CharacterDetail() {
                     </Tag>
                 </Descriptions.Item>
             ))}
+            {character.series.available <= 0 && (<Paragraph>There's no series.</Paragraph>)}
         </Descriptions>
     </PageHeader>
   );
