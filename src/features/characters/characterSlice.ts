@@ -28,7 +28,7 @@ export interface Character {
   }
 }
 
-interface DataResponse {
+export interface DataResponse {
   offset: number;
   limit: number;
   total: number;

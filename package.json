@@ -55,9 +55,11 @@
     "@commitlint/cli": "^13.1.0",
     "@commitlint/config-conventional": "^13.1.0",
     "@types/react-router-dom": "^5.1.8",
+    "@types/testing-library__dom": "^7.5.0",
     "@types/webpack-env": "^1.16.2",
     "husky": "^7.0.1",
     "lint-staged": "^11.1.2",
+    "msw": "^0.34.0",
     "pinst": "^2.1.6"
   },
   "lint-staged": {

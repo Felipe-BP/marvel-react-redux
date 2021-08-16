@@ -1,5 +1,7 @@
 import { Card, Image } from 'antd';
+import { ArrowRightOutlined } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
+
 import { Character } from '../../features/characters/characterSlice';
 
 import './styles.css';
@@ -31,14 +33,10 @@ export function CharacterCard({ character }: CharacterCardProps) {
           <Link
             to={{
               pathname: `/character/${character.id}/details`,
-              state: {
-                name: character.name,
-                description: character.description,
-                series: character.series,
-              },
+              state: { character }
             }}
           >
-            Click here for details
+            Click here for details <ArrowRightOutlined />
           </Link>
         }
       />

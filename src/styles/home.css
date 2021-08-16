@@ -1,18 +1,7 @@
-.content-container {
-    padding: 0 50px;
-}
-
-.layout-content {
-    min-height: 100%;
-    padding: 24px;
-    margin: 24px;
-    background-color: #fff;
-}
-
 .column {
     padding: 8px 0;
 }
 
-.layout-content .search {
+.search {
     margin-bottom: 2.5rem;
 }

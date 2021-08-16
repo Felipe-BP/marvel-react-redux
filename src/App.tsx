@@ -2,21 +2,32 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Layout } from 'antd';
 
 import { Home } from './pages/Home';
+import { CharacterDetail } from './pages/CharacterDetail';
 
-const { Header, Footer } = Layout;
+import './styles/app.css';
+
+const { Header, Content, Footer } = Layout;
 
 function App() {
   return (
-    <Layout style={{ minHeight: '100%' }}>
+    <Layout className="app-container">
       <Header>Header</Header>
 
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Content className="content-container">
+            <div className="layout-content">
+              <Route exact path="/" component={Home} />
+              <Route
+                path="/character/:characterId/details"
+                component={CharacterDetail}
+              />
+            </div>
+          </Content>
         </Switch>
       </BrowserRouter>
 
-      <Footer style={{ textAlign: 'center' }}>Made with 💗 by Felipe Bueno!</Footer>
+      <Footer className="footer">Made with 💗 by Felipe Bueno!</Footer>
     </Layout>
   );
 }
