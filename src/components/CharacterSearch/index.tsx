@@ -24,6 +24,7 @@ export function CharacterSearch() {
       placement="bottomLeft"
     >
       <Search
+        aria-label="search-input"
         allowClear
         placeholder="Search Character by name..."
         enterButton="Search"

@@ -33,14 +33,14 @@ export function Home() {
   return (
     <>
       <Row className="search" justify="center">
-        <Col span={10}>
+        <Col span={10} data-testid="search-bar-col">
           <CharacterSearch />
         </Col>
       </Row>
 
-      {status === Status.LOADING && <Spin indicator={antIcon} />}
+      {status === Status.LOADING && <Spin data-testid="loading" indicator={antIcon} />}
 
-      {status === Status.IDLE && !characters.length && <Empty />}
+      {status === Status.IDLE && !characters.length && <Empty data-testid="empty" />}
 
       {status === Status.IDLE && characters.length && (
         <>
