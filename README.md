@@ -43,6 +43,11 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 I've setup a project tasks for fixes/improvements. If you interested, check out [Roadmap](https://github.com/Felipe-BP/marvel-react-redux/projects/2) 😁
 
+## Known Issues
+
+When you run the project or the automated tests, an warning `Warning: findDOMNode is deprecated in StrictMode.`.
+This is a problem with Ant and React 17 StrictMode. [Issue](https://github.com/ant-design/ant-design/issues/26136)
+
 ## Contributing
 
 This project is using Commitlint for conventional commits, so if you interested in contributing, check [commitlint](https://commitlint.js.org/#/) and [conventional-commits](https://www.conventionalcommits.org/en/v1.0.0/)
