@@ -26,11 +26,4 @@ export default function configureAppStore() {
 }
 
 type Store = ReturnType<typeof configureAppStore>;
-export type AppDispatch = Pick<Store, 'dispatch'>;
 export type AppState = ReturnType<Store['getState']>; // infer state type
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  AppState,
-  unknown,
-  Action<string>
->;

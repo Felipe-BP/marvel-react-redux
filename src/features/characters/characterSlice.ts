@@ -42,6 +42,11 @@ export interface CharacterState {
   searchValue: string | null;
 }
 
+interface UpdateCharacterPayload {
+  characterId: number;
+  data: { name: string; description: string }
+}
+
 const initialState: CharacterState = {
   value: {
     offset: 0,
@@ -83,6 +88,13 @@ export const characterSlice = createSlice({
     changeSearchValue: (state, action: PayloadAction<string>) => {
       state.searchValue = action.payload;
     },
+    updateCharacterData: (state, action: PayloadAction<UpdateCharacterPayload>) => {
+      const character = state.value.results.find(({ id }) => id === action.payload.characterId);
+      if (character) {
+        character.name = action.payload.data.name;
+        character.description = action.payload.data.description;
+      }
+    }
   },
   extraReducers: (builder) => {
     builder
@@ -96,5 +108,5 @@ export const characterSlice = createSlice({
   },
 });
 
-export const { changeCurrentPage, changeSearchValue } = characterSlice.actions;
+export const { changeCurrentPage, changeSearchValue, updateCharacterData } = characterSlice.actions;
 export default characterSlice.reducer;
