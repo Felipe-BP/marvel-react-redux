@@ -1,5 +1,6 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { Layout } from 'antd';
+import { GithubOutlined } from '@ant-design/icons';
 
 import { Home } from './pages/Home';
 import { CharacterDetail } from './pages/CharacterDetail';
@@ -11,7 +12,11 @@ const { Header, Content, Footer } = Layout;
 function App() {
   return (
     <Layout className="app-container">
-      <Header>Header</Header>
+      <Header>
+        <a href="https://github.com/Felipe-BP/marvel-react-redux" target="_blank" rel="noreferrer">
+          <GithubOutlined className="github-icon" />
+        </a>
+      </Header>
 
       <BrowserRouter>
         <Switch>

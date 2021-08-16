@@ -16,3 +16,9 @@
 .app-container .footer {
     text-align: center;
 }
+
+.github-icon {
+    font-size: 25px;
+    color: #fff;
+    cursor: pointer;
+}
