@@ -39,7 +39,7 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 
 ## Roadmap
 
-I've setup a project tasks for fixes/improvements. If you interested, check out [] 😁
+I've setup a project tasks for fixes/improvements. If you interested, check out [Roadmap](https://github.com/Felipe-BP/marvel-react-redux/projects/2) 😁
 
 ## Contributing
 
