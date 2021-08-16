@@ -8,19 +8,21 @@ Welcome to Marvel + React + Redux project 🎉
 
 ## Running
 
-The first step is to clone the project and install dependencies
+1. The first step is to clone the project and install dependencies
+
 In the project directory, you can run:
+
+```This step will install the project dependencies.```
 
 ### `yarn`
 
-This step will install the project dependencies.
+2. Now you need to setup the environment variables.
 
-Now you need to setup the environment variables.
-For that check out the [Create-React-App Docs](https://create-react-app.dev/docs/adding-custom-environment-variables/) and the [Env Sample File](./.env.sample).
+Create an account into Marvel site, and generate the API keys. [More Information](https://developer.marvel.com/docs)
 
-To generate Marvel API keys, do you need to create an account and follow the docs. [More Information](https://developer.marvel.com/docs)
+Now create the env file and setup the generated keys. [Create-React-App Custom Environment Variables](https://create-react-app.dev/docs/adding-custom-environment-variables/) / [Env Sample File](./.env.sample)
 
-After this configuration you can run the following command:
+3. After this configuration you can run the following command:
 
 ### `yarn start`
 
@@ -30,7 +32,7 @@ Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 The page will reload if you make edits.<br />
 You will also see any lint errors in the console.
 
-To run the automated tests:
+## Running Tests:
 
 ### `yarn test`
 
