@@ -1,4 +1,4 @@
-import { configureStore, ThunkAction, Action, combineReducers } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
 import charactersReducer from '../features/characters/characterSlice';
 import loggerMiddleware from '../middlewares/logger';
