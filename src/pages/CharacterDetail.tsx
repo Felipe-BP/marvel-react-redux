@@ -1,36 +1,52 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 
 import { useLocation, useParams } from 'react-router-dom';
 import { Descriptions, PageHeader, Tag, Typography } from 'antd';
+import { EditOutlined } from '@ant-design/icons';
 
-import { Character, DataResponse } from '../features/characters/characterSlice';
-import { api } from '../services/api';
+import { Character } from '../features/characters/characterSlice';
+import { CharacterEditForm } from '../components/CharacterEditForm';
+import { useAppSelector } from '../hooks/useAppSelector';
 
 const { Text, Paragraph } = Typography;
 
 export function CharacterDetail() {
-  const { state } = useLocation<{ character: Character }>();
+  const { state: routeState } = useLocation<{ character: Character }>(); 
   const { characterId } = useParams<{ characterId: string }>();
-  const [character, setCharacter] = useState(state.character);
+  const character = useAppSelector(state =>
+    state.characters.value.results.find(({ id }) => id === Number(characterId)) ?? routeState.character
+  ); // use routeState as a fallback
+
+  const [formVisibility, setFormVisibility] = useState(false);
+
   const characterHasSeries = character.series.available >= 1;
 
-  useEffect(() => {
-    async function fetchCharacter() {
-        const { data: resData } = await api.get<{ data: DataResponse }>(`/v1/public/characters/${characterId}`);
-        const [ retrievedCharacter ] = resData.data.results;
-        setCharacter(retrievedCharacter);
-    }
+  function showEditForm() {
+    setFormVisibility(true);
+  }
 
-    if (!character) {
-        fetchCharacter();
-    }
-  }, [characterId, character]);
+  function closeEditForm() {
+    setFormVisibility(false);
+  }
 
   return (
     <PageHeader
         title={character.name}
         avatar={{ src: `${character.thumbnail.path}/portrait_small.${character.thumbnail.extension}` }}
         onBack={() => window.history.back()}
+        extra={[
+            <EditOutlined
+                key="1"
+                style={{ fontSize: '24px', color: '#08c', cursor: 'pointer' }}
+                onClick={() => showEditForm()}
+            />,
+            <CharacterEditForm
+                key="2"
+                visible={formVisibility}
+                character={character}
+                onCloseModal={() => closeEditForm()}
+            />
+        ]}
     >
         <Descriptions title='Description'>
             <Descriptions.Item>

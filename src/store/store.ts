@@ -1,4 +1,4 @@
-import { configureStore, ThunkAction, Action, combineReducers } from '@reduxjs/toolkit';
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 
 import charactersReducer from '../features/characters/characterSlice';
 import loggerMiddleware from '../middlewares/logger';
@@ -26,11 +26,4 @@ export default function configureAppStore() {
 }
 
 type Store = ReturnType<typeof configureAppStore>;
-export type AppDispatch = Pick<Store, 'dispatch'>;
 export type AppState = ReturnType<Store['getState']>; // infer state type
-export type AppThunk<ReturnType = void> = ThunkAction<
-  ReturnType,
-  AppState,
-  unknown,
-  Action<string>
->;
